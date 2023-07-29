@@ -1,0 +1,30 @@
+FINAL YEAR PROJECT MANAGEMENT SYSTEM(FYPMS)
+
+A.users:
+1.Admin
+2.Student
+3.Super-visor
+4.Coordinator
+
+B.Functionality
+
+Admin:
+Overall of the system
+manage others users(add, delete and update)
+
+Student:
+Submit concept note to supervisor
+Submit progress report to supervisor 
+Submit Final Report and Project to supervisor
+
+Supervisor:
+Accept, Return and Reject Concept note
+Accept, Return and Reject progress report
+Accept, Return and Reject project report
+
+Panelist:
+Comment on other Projects
+
+Coordinator:
+Accept, Return and Reject project report approved by group supervisor
+
