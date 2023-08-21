@@ -7,16 +7,13 @@ function MainLayout()
     return(
 <>
 <div className="sidebar">
-          <a className="active" href="#home">Home</a>
-          <a href="#news">News</a>
-          <a href="#contact">Contact</a>
-          <a href="#about">About</a>
+          <a className="active" href="/">Dashboard</a>
+          <a href="users">Users</a>
+          <a href="projects">Project/s</a>
           <a href="/logout">Logout</a>
         </div>
         
-        <div className="content">
     
-        </div>
 
 </>
             );
