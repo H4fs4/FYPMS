@@ -12,7 +12,7 @@ function App() {
   return (
     <BrowserRouter>
     <Routes>
-    <Route path='/' Component={Dashboard}/>
+    <Route exact path='/' Component={Dashboard}/>
     <Route path='/users' Component={Users}/>
     <Route path='/projects' Component={Projects}/>
     <Route path='/logout' Component={Login}/>
