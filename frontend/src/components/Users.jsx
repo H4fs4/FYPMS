@@ -1,48 +1,54 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MainLayout from "../Layout/MainLayout";
 import Popup from "./Popup";
 
-function Users()
-{
+
+function Users() {
+    const [users, setUsers] = useState([])
+    useEffect(
+        () => {
+            fetch('http://127.0.0.1:8000/api/users/', {
+                method: 'GET'
+            }).then(response => response.json()).then(data => setUsers(data));
+        }
+
+        , [users])
     return (
         <>
-        <MainLayout/>
-        <div className="content">
-        <h1>Users</h1>
-<span className="add-button"><Popup btnName='ADD' formTitle={'Add New User'}/></span>   
+            <MainLayout />
+            <div className="content">
+                <h1>Users</h1>
+                <span className="add-button"><Popup btnName='ADD' btnClass={'btn-outline-primary'} formTitle={'Add New User'} /></span>
 
-        <table className="table table-striped">
-            <thead>
-                <th>#</th>
-                <th>ID</th>
-                <th>Full Name</th>
-                <th>Type</th>
-                <th>Action</th>
-            </thead>
-            <tbody>
-            <tr>
-                    <td>1</td>
-                    <td>T/UDOM/2020/009</td>
-                    <td>Hafsa Ayoub Kisili</td>
-                    <td>Student</td>
-                    <td>
-                        <button className="btn btn-dark m-1">EDIT</button>
-                        <button className="btn btn-danger">DELETE</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>T/UDOM/2020/009</td>
-                    <td>Hafsa Ayoub Kisili</td>
-                    <td>Student</td>
-                    <td>
-                        <button className="btn btn-dark m-1">EDIT</button>
-                        <button className="btn btn-danger">DELETE</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        </div>
+                <table className="table table-striped">
+                    <thead>
+                        <th>#</th>
+                        <th>ID</th>
+                        <th>Full Name</th>
+                        <th>Type</th>
+                        <th>Action</th>
+                    </thead>
+                    <tbody>
+                        {
+
+                            users.map((user, index) => <tr>
+                                <td>{index + 1}</td>
+                                <td>T/UDOM/2020/00{user.id}</td>
+                                <td>{user.username}</td>
+                                <td>{user.role}</td>
+
+                                <td>
+                                    <Popup btnName='EDIT' btnClass={'btn-dark'} formTitle={'Update User'} userId={user.id} />
+
+                                    <Popup btnName='DELETE' btnClass={'btn-danger'} formTitle={'Are you sure wanna Delete User?'} userId={user.id} />
+                                </td>
+                            </tr>)
+                        }
+
+
+                    </tbody>
+                </table>
+            </div>
         </>
     );
 }
