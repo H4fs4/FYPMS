@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import MainLayout from "../Layout/MainLayout";
 import './Users.css';
-import Projectpopup from "./Projectpopup";
+import Projectpopupp from "./Projectpopupp";
 
 
 function Projects(){
@@ -22,11 +22,12 @@ function Projects(){
         <MainLayout/>
         <div className="content">
         <h1>Projects</h1>
-        <span className="add-button"><Projectpopup btnName='ADD' formTitle={'New Project'}/></span>
+        <span className="add-button"><Projectpopupp btnName='ADD' formTitle={'Add New Project'}/></span>
 
         <table className="table table-striped">
             <thead>
                 <th>#</th>
+                <th>Project ID</th>
                 <th>Type</th>
                 <th>Title</th>
                 <th>Status</th>
@@ -36,12 +37,13 @@ function Projects(){
                 {
               project.map((project, index)=><tr>
                     <td>{index+1}</td>
+                    <td>P00{project.project_id}</td>
                     <td>{project.type}</td>
                     <td>{project.title}</td>
                     <td>{project.status}</td>
                     <td>
-                        <button className="btn btn-primary m-1">EDIT</button>
-                        <button className="btn btn-secondary">DELETE</button>
+                    <Projectpopupp btnName='EDIT' btnClass={'btn-dark'} formTitle={'Update Project'} projectId={project.project_id} />
+                    <Projectpopupp btnName='DELETE' btnClass={'btn-danger'} formTitle={'Are you sure wanna Delete Project?'} projectId={project.project_id} />
                     </td>
                 </tr>
               )

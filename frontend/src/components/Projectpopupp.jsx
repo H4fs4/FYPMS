@@ -2,17 +2,17 @@ import React, { useState, useEffect } from "react";
 import './Popup.css';
 import swal from "sweetalert";
 
-function Projectpopup({ btnName, btnClass, formTitle, projectId}) {
+function Projectpopupp({ btnName, btnClass, formTitle, projectId}) {
     const [isOpen, setIsOpen] = useState(false);
     const [type, setType] = useState('');
     const [title, setTitle] = useState('');
     const [status, setStatus] = useState('');
-    const [project, setProject] = useState([])
+    
 
 
     useEffect(
         () => {
-            fetch('http://127.0.0.1:8000/api/projects/' , {
+            fetch('http://127.0.0.1:8000/api/projects/'+projectId , {
                 method: 'GET'
             }).then(response => response.json()).then(data => {
                 setType(data.type);
@@ -50,7 +50,10 @@ function Projectpopup({ btnName, btnClass, formTitle, projectId}) {
             });
 
             if (response.ok) {
-                swal({ title: 'user created succesful', icon: 'success' });
+                swal({ title: 'project created succesful', icon: 'success' });
+                setTitle('');
+                setStatus("");
+                setType('');
 
             }
             else {
@@ -62,6 +65,7 @@ function Projectpopup({ btnName, btnClass, formTitle, projectId}) {
 
 
         if (btnName === 'EDIT') {
+            
 
             const response = await fetch('http://127.0.0.1:8000/api/projects/' + projectId + '/', {
                 method: 'PUT',
@@ -73,7 +77,7 @@ function Projectpopup({ btnName, btnClass, formTitle, projectId}) {
 
                     JSON.stringify(
                         {
-                            "project_id":  projectId,
+                            "project_id": projectId,
                             type,
                             title,
                             status
@@ -100,7 +104,7 @@ function Projectpopup({ btnName, btnClass, formTitle, projectId}) {
             });
 
             if (response.ok) {
-                alert('User succesful Deleted')
+                alert('Project succesful Deleted')
             }
             else {
                 alert('something went wrong')
@@ -122,8 +126,8 @@ function Projectpopup({ btnName, btnClass, formTitle, projectId}) {
                             <div className="card">
 
                                 <div className="card-body">
-                                    <h5>{formTitle}</h5>
-                                    {formTitle.includes('User') && (
+                                    <h5>{formTitle }</h5>
+                                    {formTitle.includes('Project') && (
                                         btnName === 'DELETE' ? (
                                             <>
                                                 <button onClick={handleSubmit} className="btn btn-primary">YES</button>
@@ -155,4 +159,4 @@ function Projectpopup({ btnName, btnClass, formTitle, projectId}) {
     );
 }
 
-export default Projectpopup;
+export default Projectpopupp;

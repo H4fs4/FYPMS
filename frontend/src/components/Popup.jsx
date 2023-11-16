@@ -6,7 +6,7 @@ function Popup({ btnName, btnClass, formTitle, userId }) {
     const [isOpen, setIsOpen] = useState(false);
     const [role, setRole] = useState('');
     const [username, setUserName] = useState('');
-    const [user, setUser] = useState([])
+    
 
 
     useEffect(
